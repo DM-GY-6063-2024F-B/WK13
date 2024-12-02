@@ -4,9 +4,6 @@ void setup() {
 
 void loop() {
   int a0Val = analogRead(A0);
-  int a0ValSend = map(a0Val, 0, 4095, 0, 255);
-
-  Serial.println(a0ValSend);
-
+  Serial.println(a0Val);
   delay(2);
 }
