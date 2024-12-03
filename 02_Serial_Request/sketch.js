@@ -6,8 +6,9 @@ let readyToReceive;
 let cBackgroundColor;
 
 function receiveSerial() {
-  let line = mSerial.readUntil("\n");
-  let sensorVal = int(line);
+  let mLine = mSerial.readUntil("\n");
+  let sensorVal = int(mLine);
+  print(mLine, sensorVal);
   cBackgroundColor = map(sensorVal, 0, 2000, 0, 255, true);
   readyToReceive = true;
 }

@@ -17,15 +17,20 @@ void sendData(int val, int vMin, int vMax) {
   Serial.println(resTxt);
 }
 
+int a0Min;
+int a0Max;
+
 void setup() {
   Serial.begin(9600);
   while (!Serial) {}
+  a0Min = 4095;
+  a0Max = 0;
 }
 
 void loop() {
   int a0Val = analogRead(A0);
-  int a0Min = min(a0Min, a0Val);
-  int a0Max = max(a0Max, a0Val);
+  a0Min = min(a0Min, a0Val);
+  a0Max = max(a0Max, a0Val);
 
   if (Serial.available() > 0) {
     int byteIn = Serial.read();

@@ -6,20 +6,20 @@ let readyToReceive;
 let cBackgroundColor;
 
 function receiveSerial() {
-  let line = mSerial.readUntil("\n");
-  trim(line);
-  if (!line) return;
+  let mLine = mSerial.readUntil("\n");
+  trim(mLine);
+  if (!mLine) return;
 
-  if (line.charAt(0) != "{") {
-    print("error: ", line);
+  if (mLine.charAt(0) != "{") {
+    print("error: ", mLine);
     readyToReceive = true;
     return;
   }
 
-  let data = JSON.parse(line).data;
-  print(data);
-  let a0 = data.A0;
+  let data = JSON.parse(mLine).data;
+  print(mLine, data);
 
+  let a0 = data.A0;
   cBackgroundColor = map(a0.value, a0.min, a0.max, 0, 255);
   readyToReceive = true;
 }

@@ -2,6 +2,8 @@ let mSerial;
 
 let connectButton;
 
+let lastSend;
+
 function sendSerial(data) {
   if (mSerial.opened()) {
     mSerial.write(JSON.stringify(data));
@@ -24,12 +26,14 @@ function setup() {
   connectButton = createButton("Connect To Serial");
   connectButton.position(width / 2, height / 2);
   connectButton.mousePressed(connectToSerial);
+
+  lastSend = millis();
 }
 
 function draw() {
   background(0);
-}
-
-function mousePressed() {
-  sendSerial({ data: { x: mouseX, y: mouseY, w: width, h: height } });
+  if (millis() - lastSend > 20) {
+    sendSerial({ data: { x: mouseX, y: mouseY, w: width, h: height } });
+    lastSend = millis();
+  }
 }

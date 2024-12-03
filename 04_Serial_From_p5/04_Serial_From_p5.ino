@@ -26,9 +26,12 @@ void receiveData(const char* jsonText) {
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial) {}
+
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
-  while (!Serial) {}
+  analogWrite(2, 0);
+  analogWrite(3, 0);
 }
 
 void loop() {
